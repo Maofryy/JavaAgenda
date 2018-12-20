@@ -5,8 +5,8 @@ import java.awt.event.ActionEvent;
 
 public class PagePanel extends JPanel {
 
-      //private JLabel toptxt, midtxt, bottxt;
-      private JButton toptxt, midtxt, bottxt;
+      private JLabel toptxt, menutxt, midtxt, bottxt;
+      //private JButton toptxt, midtxt, bottxt;
 
       public PagePanel()
       {
@@ -38,9 +38,10 @@ public class PagePanel extends JPanel {
         toptxt.setText("TOP");
         midtxt.setText("MID");
         bottxt.setText("BOT");*/
-        toptxt = new JButton("TOP");
-        midtxt = new JButton("MID");
-        bottxt = new JButton("BOT");
+        toptxt = new JLabel("Date");
+        menutxt = new JLabel("Commandes");
+        midtxt = new JLabel("Notes");
+        bottxt = new JLabel("Rappels et Evenements");
 
 
 
@@ -48,11 +49,13 @@ public class PagePanel extends JPanel {
         c.gridy = 1;
         this.add(toptxt, c);
         c.gridy = 2;
+        this.add(menutxt, c);
+        c.gridy = 3;
         //c.fill = GridBagConstraints.HORIZONTAL;
         c.gridheight = 2;
         c.weighty = 1.0;
         this.add(midtxt, c);
-        c.gridy = 4;
+        c.gridy = 5;
         c.weighty = 0.0;
         c.gridheight = 1;
         //c.fill = GridBagConstraints.VERTICAL;
