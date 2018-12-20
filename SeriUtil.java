@@ -36,7 +36,7 @@ public class SeriUtil
       }
   }
 
-  public static void saveNotes(List<Events> events){
+  public static void saveEvents(List<Note> events){
     try {
     FileOutputStream fos = new FileOutputStream("Events.ser");
     ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -50,7 +50,7 @@ public class SeriUtil
   }
 
   @SuppressWarnings("unchecked")
-  public static List<Event> loadEvents(){
+  public static List<Note> loadEvents(){
     List<Note> e = null;
     try {
          FileInputStream fos = new FileInputStream("Events.ser");

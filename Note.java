@@ -4,6 +4,7 @@ import java.io.*;
 public class Note implements Serializable{
   private Date day;
   private String text;
+  private Long serialVersionUID;
 
   public Note(Date day)
   {
@@ -17,10 +18,10 @@ public class Note implements Serializable{
     this.text = text;
   }
 
-  // public Date getDate()
-  // {
-  //     return this.day;
-  // }
+  public Date getD()
+  {
+      return this.day;
+  }
 
   public String getText()
   {

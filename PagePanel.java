@@ -2,46 +2,42 @@ import javax.swing.*;
 import java.awt.*; //Pour les layouts
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.*;
+import java.util.List;
+import java.text.*;
 
 public class PagePanel extends JPanel {
 
       private JLabel toptxt, menutxt, midtxt, bottxt;
       //private JButton toptxt, midtxt, bottxt;
 
-      public PagePanel()
+      public PagePanel(Date day, List<Note> notes, List<Note> events)
       {
-        /*
-        top.setLayout(new GridLayout(1,1));
-        mid.setLayout(new GridLayout(1,1));
-        bot.setLayout(new GridLayout(1,1));
-        JLabel toptxt = new JLabel();
-        JLabel midtxt = new JLabel();
-        JLabel bottxt = new JLabel();
-        toptxt.setText("TOP");
-        midtxt.setText("MID");
-        bottxt.setText("BOT");
-
-        top.add(toptxt);
-        contentPane.add(top);
-        mid.add(midtxt);
-        contentPane.add(mid);
-        bot.add(bottxt);
-        contentPane.add(bot);
-
-        setVisible(true);*/
         this.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
 
-        /*toptxt = new JLabel();
-        midtxt = new JLabel();
-        bottxt = new JLabel();
-        toptxt.setText("TOP");
-        midtxt.setText("MID");
-        bottxt.setText("BOT");*/
-        toptxt = new JLabel("Date");
+        toptxt = new JLabel(fmt.format(day));
         menutxt = new JLabel("Commandes");
-        midtxt = new JLabel("Notes");
-        bottxt = new JLabel("Rappels et Evenements");
+        //get index of corresponding day
+        int i;
+        String text;
+        if ((i = ListUtil.getIndex(day, notes)) == -1)
+        {
+          text = "";
+        }else{
+          text = notes.get(i).getText();
+        }
+        System.out.println(text);
+        //int ievents = ListUtil.getIndexEvents(day, events);
+        midtxt = new JLabel(text);
+        if ((i = ListUtil.getIndex(day, events)) == -1)
+        {
+          text = "";
+        }else{
+          text = events.get(i).getText();
+        }
+        bottxt = new JLabel(text);
 
 
 
