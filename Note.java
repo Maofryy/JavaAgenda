@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Note implements Serializable{
   private Date day;
-  private String text;
+  public String text;
   private Long serialVersionUID;
 
   public Note(Date day)

@@ -12,7 +12,7 @@ public class Window extends JFrame{
 
 
 
-    public Window(String name, Date day, List<Note> notes, List<Note> events){
+    public Window(String name, Date day, List<Note> notes, List<Event> events){
       super(name);
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       setLocation(300,100);
