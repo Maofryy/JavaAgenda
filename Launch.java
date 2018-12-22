@@ -16,49 +16,53 @@ public class Launch{
         day = cal.getTime();
         Note note = new Note(day, "First Note test");
         Event event = new Event(day, "First Event test", 2);
-        List<Note> notes = new ArrayList<Note>();
-        List<Event> events = new ArrayList<Event>();
+        // List<Note> notes = new ArrayList<Note>();
+        // List<Event> events = new ArrayList<Event>();
 
-        // notes.add(note);
-        // events.add(event);
-        //
-        // cal.setTime(day);
-        // //System.out.println(day);
-        // cal.add(Calendar.DAY_OF_MONTH, 1);
-        // day = cal.getTime();
-        // System.out.println(day);
-        // note = new Note(day, "Second Note test");
-        // event = new Event(day, "Second Event test",1);
-        // notes.add(note);
-        // events.add(event);
-        // SeriUtil.saveNotes(notes);
-        // SeriUtil.saveEvents(events);
-        // cal.add(Calendar.DAY_OF_MONTH, -1);
-        // day = cal.getTime();
+        Record rec = new Record(day);
 
-        if ((notes = SeriUtil.loadNotes()) == null)
+          // rec.notes.add(note);
+          // rec.events.add(event);
+          //
+          // cal.setTime(day);
+          // //System.out.println(day);
+          // cal.add(Calendar.DAY_OF_MONTH, 1);
+          // day = cal.getTime();
+          // //System.out.println(day);
+          // note = new Note(day, "Bonjour");
+          // event = new Event(day, "Second Event test",1);
+          // rec.notes.add(note);
+          // rec.events.add(event);
+          // SeriUtil.saveNotes(rec.notes);
+          // SeriUtil.saveEvents(rec.events);
+          //
+          // cal.add(Calendar.DAY_OF_MONTH, -1);
+          // day = cal.getTime();
+
+
+        if ((rec.notes = SeriUtil.loadNotes()) == null)
         {
           System.out.println("Pas de fichier de notes, creation...");
           SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.FRANCE);
           Date dat = new Date();
           try {dat = sdf.parse("2000-01-01");}catch (ParseException e){e.printStackTrace();}
           Note ret = new Note(dat, "Debut du Millenaire.");
-          notes = new ArrayList<Note>();
-          notes.add(ret);
-          SeriUtil.saveNotes(notes);
+          rec.notes = new ArrayList<Note>();
+          rec.notes.add(ret);
+          SeriUtil.saveNotes(rec.notes);
         }else{
           System.out.println("Notes Loaded");
         }
-        if ((events = SeriUtil.loadEvents()) == null)
+        if ((rec.events = SeriUtil.loadEvents()) == null)
         {
           System.out.println("Pas de fichier de events, creation...");
           SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.FRANCE);
           Date dat = new Date();
           try {dat = sdf.parse("2000-01-01");}catch (ParseException e){e.printStackTrace();}
           Event ret = new Event(dat,"Debut du Millenaire.",0);
-          events = new ArrayList<Event>();
-          events.add(ret);
-          SeriUtil.saveEvents(events);
+          rec.events = new ArrayList<Event>();
+          rec.events.add(ret);
+          SeriUtil.saveEvents(rec.events);
         }else{
           System.out.println("Events Loaded");
         }
@@ -67,7 +71,7 @@ public class Launch{
 
         //Charger interface et update
 
-        Window win = new Window("Agenda", day, notes, events);
+        Window win = new Window("Agenda", rec);
         //Checker les rappels (POP UP ?)
         //Interpreter les boutons (Navigation, ajout de note ou rappel)
 

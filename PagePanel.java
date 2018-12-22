@@ -12,15 +12,22 @@ public class PagePanel extends JPanel implements ActionListener{
       private JPanel menutxt;
       //private JButton toptxt, midtxt, bottxt;
       private JButton newNote, newEvent;
+      Record rec;
+      Date day;
 
-      public PagePanel(Date day, List<Note> notes, List<Event> events)
+      public PagePanel(Record rec)
       {
         this.setLayout(new GridBagLayout());
+        System.out.println(rec.day);
+        this.day = rec.day;
+        // this.notes = notes;
+        // this.events = events;
+        this.rec = rec;
         GridBagConstraints c = new GridBagConstraints();
         SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
 
         //Affichage de la date en TOP
-        toptxt = new JLabel(fmt.format(day));
+        toptxt = new JLabel(fmt.format(this.day));
 
         //Menu des boutons en Mid
         menutxt = new JPanel();
@@ -34,21 +41,21 @@ public class PagePanel extends JPanel implements ActionListener{
         //get index of corresponding day
         int i;
         String text;
-        if ((i = ListUtil.getIndexNotes(day, notes)) == -1)
+        if ((i = ListUtil.getIndexNotes(this.day, rec.notes)) == -1)
         {
           text = "";
         }else{
-          text = notes.get(i).getText();
+          text = rec.notes.get(i).getText();
         }
 
         //Affichage des events en bas de page
         //int ievents = ListUtil.getIndexEvents(day, events);
         midtxt = new JLabel(text);
-        if ((i = ListUtil.getIndexEvents(day, events)) == -1)
+        if ((i = ListUtil.getIndexEvents(this.day, rec.events)) == -1)
         {
           text = "";
         }else{
-          text = events.get(i).getText();
+          text = rec.events.get(i).getText();
         }
         bottxt = new JLabel(text);
 
@@ -73,7 +80,6 @@ public class PagePanel extends JPanel implements ActionListener{
         //Manipulation des boutons
         newNote.addActionListener(this);
         newEvent.addActionListener(this);
-
       }
 
       public void actionPerformed(ActionEvent e){
@@ -81,11 +87,39 @@ public class PagePanel extends JPanel implements ActionListener{
         Object ev=e.getSource();
         if (ev == newNote)
         {
-          //InputPopUp ipu = new InputPopUp();
+          InputNote in = new InputNote("Nouvelle Note",this.day, this.rec);
           System.out.println("New Note pressed.");
+          System.out.println(this.day);
+          System.out.println(this.rec.day);
+          SeriUtil.saveNotes(this.rec.notes);
         }else if (ev == newEvent)
         {
           System.out.println("New Event pressed.");
         }
+      }
+
+      public void update(Record rec)
+      {
+        int i;
+        String text;
+        //ListUtil.printNotes(rec.notes);
+        //System.out.println(this.day);
+        if ((i = ListUtil.getIndexNotes(this.day, rec.notes)) == -1)
+        {
+          text = "";
+        }else{
+          text = rec.notes.get(i).getText();
+        }
+
+        //Affichage des events en bas de page
+        //int ievents = ListUtil.getIndexEvents(day, events);
+        midtxt.setText(text);
+        if ((i = ListUtil.getIndexEvents(this.day, rec.events)) == -1)
+        {
+          text = "";
+        }else{
+          text = rec.events.get(i).getText();
+        }
+        bottxt.setText(text);
       }
 }

@@ -30,4 +30,14 @@ public class ListUtil
     }
     return -1;
   }
+
+  public static void printNotes(List<Note> notes)
+  {
+      int i = 0;
+      while (i < notes.size())
+      {
+        System.out.println(notes.get(i++));
+      }
+
+  }
 }

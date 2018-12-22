@@ -12,7 +12,7 @@ public class Window extends JFrame{
 
 
 
-    public Window(String name, Date day, List<Note> notes, List<Event> events){
+    public Window(String name, Record rec){
       super(name);
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       setLocation(300,100);
@@ -23,13 +23,13 @@ public class Window extends JFrame{
       Container contentPane = getContentPane();
 
       JPanel pan = new JPanel();
-      JPanel left = new PagePanel(day, notes, events);
+      PagePanel left = new PagePanel(rec);
 
       Calendar cal = Calendar.getInstance();
-      cal.setTime(day);
+      cal.setTime(rec.day);
       cal.add(Calendar.DAY_OF_MONTH, 1);
-      day = cal.getTime();
-      JPanel right = new PagePanel(day, notes, events);
+      rec.day = cal.getTime();
+      PagePanel right = new PagePanel(rec);
 
       left.setBackground(Color.green);
       pan.setLayout(new GridLayout(0,2));
@@ -39,5 +39,10 @@ public class Window extends JFrame{
 
       //pack();
       setVisible(true);
+      while(true)
+      {
+        left.update(rec);
+        right.update(rec);
+      }
     }
 }

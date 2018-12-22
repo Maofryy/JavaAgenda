@@ -68,4 +68,37 @@ public class SeriUtil
          return null;
       }
   }
+
+  public static void saveRecord(Record rec){
+    try {
+    FileOutputStream fos = new FileOutputStream("Record.ser");
+    ObjectOutputStream oos = new ObjectOutputStream(fos);
+    oos.writeObject(rec);
+    oos.close();
+    fos.close();
+  }
+  catch (IOException e){
+    e.printStackTrace();
+  }
+  }
+
+  @SuppressWarnings("unchecked")
+  public static Record loadRecord(){
+    Record e = null;
+    try {
+         FileInputStream fos = new FileInputStream("Record.ser");
+         ObjectInputStream oos = new ObjectInputStream(fos);
+         e = (Record) oos.readObject();
+         oos.close();
+         fos.close();
+         return e;
+      } catch (IOException i) {
+         i.printStackTrace();
+         return null;
+      } catch (ClassNotFoundException c) {
+         System.out.println("Record file not found");
+         c.printStackTrace();
+         return null;
+      }
+  }
 }
