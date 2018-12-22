@@ -89,8 +89,8 @@ public class PagePanel extends JPanel implements ActionListener{
         {
           InputNote in = new InputNote("Nouvelle Note",this.day, this.rec);
           System.out.println("New Note pressed.");
-          System.out.println(this.day);
-          System.out.println(this.rec.day);
+          System.out.println(rec);
+
           SeriUtil.saveNotes(this.rec.notes);
         }else if (ev == newEvent)
         {

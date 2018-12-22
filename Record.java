@@ -20,4 +20,8 @@ public class Record implements Serializable {
     this.events = events;
   }
 
+  public String toString(){
+    return this.notes.toString() + this.events.toString();
+  }
+
 }

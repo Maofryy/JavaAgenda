@@ -10,7 +10,7 @@ import java.util.List;
 public class Window extends JFrame{
 
 
-
+    String str;
 
     public Window(String name, Record rec){
       super(name);
@@ -18,7 +18,7 @@ public class Window extends JFrame{
       setLocation(300,100);
       setSize(1200,800);
 
-
+      this.str = SeriUtil.loadNotes().toString();
 
       Container contentPane = getContentPane();
 
@@ -43,6 +43,13 @@ public class Window extends JFrame{
       {
         left.update(rec);
         right.update(rec);
+        if (!rec.notes.toString().equals(this.str))
+        {
+          str = rec.notes.toString();
+          // System.out.println("Record has been changed, serializing.");
+          SeriUtil.saveNotes(rec.notes);
+          SeriUtil.saveEvents(rec.events);
+        }
       }
     }
 }

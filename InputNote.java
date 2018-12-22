@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.*;
 import java.util.List;
+import java.lang.*;
 
 public class InputNote extends JFrame implements ActionListener{
 
@@ -11,6 +12,7 @@ public class InputNote extends JFrame implements ActionListener{
   Record rec;
   Date day;
   JTextField input;
+  Integer flag = 0;
 
   public InputNote (String name, Date day, Record rec)
   {
@@ -45,19 +47,22 @@ public class InputNote extends JFrame implements ActionListener{
     setVisible(true);
     validate.addActionListener(this);
     cancel.addActionListener(this);
+
   }
 
   public void actionPerformed(ActionEvent e){
     Object ev=e.getSource();
     if (ev == cancel)
     {
+      this.flag = -1;
       this.dispose();
     }else if (ev == validate)
     {
+      this.flag = 1;
       Note note = new Note(this.day, this.input.getText());
       //si il existe une note dans la liste corespondant au meme jour, la remplacer.
       this.rec.notes.add(note);
-      System.out.println("Adding new note : "+ this.input.getText());
+      //System.out.println("Adding new note : "+ this.input.getText());
       this.dispose();
     }
 
