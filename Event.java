@@ -1,9 +1,9 @@
 import java.util.*;
 
 public class Event extends Note{
-  private List<Integer> type;
-  private List<String> str;
-  private String[] Types = {"Anniversaire", "Rendez-vous", "A faire"};
+  public List<Integer> type;
+  public List<String> str;
+  public String[] types = {"Anniversaire", "Rendez-vous", "A faire"};
 
   public Event(Date day)
   {
@@ -27,7 +27,7 @@ public class Event extends Note{
 
   public String getTypeString(int index)
   {
-    return Types[this.type.get(index)];
+    return types[this.type.get(index)];
   }
 
   public String getString(int index)

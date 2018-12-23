@@ -21,23 +21,23 @@ public class Launch{
 
         Record rec = new Record(day);
 
-          // rec.notes.add(note);
-          // rec.events.add(event);
-          //
-          // cal.setTime(day);
-          // //System.out.println(day);
-          // cal.add(Calendar.DAY_OF_MONTH, 1);
-          // day = cal.getTime();
-          // //System.out.println(day);
-          // note = new Note(day, "Bonjour");
-          // event = new Event(day, "Second Event test",1);
-          // rec.notes.add(note);
-          // rec.events.add(event);
-          // SeriUtil.saveNotes(rec.notes);
-          // SeriUtil.saveEvents(rec.events);
-          //
-          // cal.add(Calendar.DAY_OF_MONTH, -1);
-          // day = cal.getTime();
+         rec.notes.add(note);
+         rec.events.add(event);
+          
+          cal.setTime(day);
+          //System.out.println(day);
+           cal.add(Calendar.DAY_OF_MONTH, 1);
+           day = cal.getTime();
+           //System.out.println(day);
+           note = new Note(day, "Bonjour");
+           //event = new Event(day, "Second Event test",1);
+           rec.notes.add(note);
+           //rec.events.add(event);
+           SeriUtil.saveNotes(rec.notes);
+           SeriUtil.saveEvents(rec.events);
+          
+           cal.add(Calendar.DAY_OF_MONTH, -1);
+           day = cal.getTime();
 
 
         if ((rec.notes = SeriUtil.loadNotes()) == null)

@@ -18,7 +18,8 @@ public class PagePanel extends JPanel implements ActionListener{
       public PagePanel(Record rec)
       {
         this.setLayout(new GridBagLayout());
-        System.out.println(rec.day);
+        this.setBackground(new Color(255, 230, 179));
+	System.out.println(rec.day);
         this.day = rec.day;
         // this.notes = notes;
         // this.events = events;
@@ -36,7 +37,7 @@ public class PagePanel extends JPanel implements ActionListener{
         menutxt.setLayout(new GridLayout(0,2));
         menutxt.add(newNote, "West");
         menutxt.add(newEvent, "East");
-
+	menutxt.setBackground(new Color(255, 230, 179));
         //Affichage des Notes en milieu de Page
         //get index of corresponding day
         int i;
@@ -90,11 +91,13 @@ public class PagePanel extends JPanel implements ActionListener{
           InputNote in = new InputNote("Nouvelle Note",this.day, this.rec);
           System.out.println("New Note pressed.");
           System.out.println(rec);
-
           SeriUtil.saveNotes(this.rec.notes);
         }else if (ev == newEvent)
         {
+          InputEvent in = new InputEvent("Nouveau Rappel",this.day, this.rec);
           System.out.println("New Event pressed.");
+          System.out.println(rec);
+          SeriUtil.saveEvents(this.rec.events);
         }
       }
 
@@ -119,6 +122,7 @@ public class PagePanel extends JPanel implements ActionListener{
           text = "";
         }else{
           text = rec.events.get(i).getText();
+	  System.out.println(rec.events.get(i).getText());
         }
         bottxt.setText(text);
       }

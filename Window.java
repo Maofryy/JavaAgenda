@@ -31,7 +31,8 @@ public class Window extends JFrame{
       rec.day = cal.getTime();
       PagePanel right = new PagePanel(rec);
 
-      left.setBackground(Color.green);
+      Color colo = new Color(255, 230, 179);
+	left.setBackground(colo);
       pan.setLayout(new GridLayout(0,2));
       pan.add(left, "West");
       pan.add(right, "East");

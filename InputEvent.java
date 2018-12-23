@@ -6,15 +6,16 @@ import java.util.*;
 import java.util.List;
 import java.lang.*;
 
-public class InputNote extends JFrame implements ActionListener{
+public class InputEvent extends JFrame implements ActionListener{
 
   JButton cancel, validate;
   Record rec;
   Date day;
+  JComboBox<String> cb;
   JTextField input;
   Integer flag = 0;
 
-  public InputNote (String name, Date day, Record rec)
+  public InputEvent (String name, Date day, Record rec)
   {
     super(name);
     this.day = day;
@@ -28,16 +29,25 @@ public class InputNote extends JFrame implements ActionListener{
     Container contentPane = getContentPane();
 
     JPanel pan = new JPanel();
-    JLabel text = new JLabel("Nouvelle note :");
+    JLabel text = new JLabel("Nouveau Rappel :");
+
+    cb = new JComboBox<String>();
+    int i = 0;
+    while (i < rec.events.get(0).types.length)
+    {
+	cb.addItem(rec.events.get(0).types[i++]);
+    }
+
     input = new JTextField();
     JPanel panButtons = new JPanel();
     validate = new JButton("Enregistrer");
     cancel = new JButton("Annuler");
 
     panButtons.setLayout(new GridLayout(0,2));
-    pan.setLayout(new GridLayout(3,0));
+    pan.setLayout(new GridLayout(4,0));
 
     pan.add(text);
+    pan.add(cb);
     pan.add(input);
     panButtons.add(cancel);
     panButtons.add(validate);
@@ -60,14 +70,15 @@ public class InputNote extends JFrame implements ActionListener{
     {
       this.flag = 1;
       Integer i;
-      Note note = new Note(this.day, this.input.getText());
-      if ((i = ListUtil.getIndexNotes(this.day, this.rec.notes)) != -1)
+      Event event = new Event(this.day, this.input.getText(), this.cb.getSelectedIndex());
+      if ((i = ListUtil.getIndexEvents(this.day, this.rec.events)) != -1)
       {
-	this.rec.notes.remove(i);
+      	this.rec.events.get(i).addEvent(this.input.getText(), this.cb.getSelectedIndex());
+	System.out.println(this.cb.getSelectedIndex());
+      }else{
+      	this.rec.events.add(event);
       }
-      //si il existe une note dans la liste corespondant au meme jour, la remplacer.
       //System.out.println("Adding new note : "+ this.input.getText());
-      this.rec.notes.add(note);
       this.dispose();
     }
 

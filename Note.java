@@ -4,7 +4,8 @@ import java.io.*;
 public class Note implements Serializable{
   private Date day;
   public String text;
-  private Long serialVersionUID;
+  private  long serialVersionUID;
+ 
 
   public Note(Date day)
   {

@@ -1,0 +1,4 @@
+Gere les prbm d affichage de events, tester celle sur les notes
+Enlever le champ day de la classe Record, faire les modifications qui en decoulent
+PUSH
+
