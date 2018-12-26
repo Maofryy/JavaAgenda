@@ -96,7 +96,7 @@ public class PagePanel extends JPanel implements ActionListener{
         {
           InputEvent in = new InputEvent("Nouveau Rappel",this.day, this.rec);
           System.out.println("New Event pressed.");
-          System.out.println(rec);
+          //System.out.println(rec);
           SeriUtil.saveEvents(this.rec.events);
         }
       }
@@ -117,12 +117,13 @@ public class PagePanel extends JPanel implements ActionListener{
         //Affichage des events en bas de page
         //int ievents = ListUtil.getIndexEvents(day, events);
         midtxt.setText(text);
+        //System.out.println(this.rec.events);
         if ((i = ListUtil.getIndexEvents(this.day, rec.events)) == -1)
         {
           text = "";
         }else{
           text = rec.events.get(i).getText();
-	  System.out.println(rec.events.get(i).getText());
+	         //System.out.println(rec.events.get(i).getText());
         }
         bottxt.setText(text);
       }

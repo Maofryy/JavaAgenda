@@ -4,6 +4,7 @@ public class Event extends Note{
   public List<Integer> type;
   public List<String> str;
   public String[] types = {"Anniversaire", "Rendez-vous", "A faire"};
+  public static String newline = System.getProperty("line.separator");
 
   public Event(Date day)
   {
@@ -44,12 +45,23 @@ public class Event extends Note{
   {
     String ret = "";
     int i = 0;
-    while (i < str.size())
+    while (i < this.str.size())
+    {
+      ret += this.getString(i) + this.newline;
+      i++;
+    }
+    return ret;
+  }
+
+  public String toString()
+  {
+    String ret = "";
+    int i = 0;
+    while (i < this.str.size())
     {
       ret = this.getString(i) + "\n";
       i++;
     }
     return ret;
   }
-
 }

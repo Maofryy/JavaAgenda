@@ -71,10 +71,12 @@ public class InputEvent extends JFrame implements ActionListener{
       this.flag = 1;
       Integer i;
       Event event = new Event(this.day, this.input.getText(), this.cb.getSelectedIndex());
+      System.out.println(this.rec);
+      System.out.println(this.day);
       if ((i = ListUtil.getIndexEvents(this.day, this.rec.events)) != -1)
       {
       	this.rec.events.get(i).addEvent(this.input.getText(), this.cb.getSelectedIndex());
-	System.out.println(this.cb.getSelectedIndex());
+	      System.out.println(this.cb.getSelectedIndex());
       }else{
       	this.rec.events.add(event);
       }
