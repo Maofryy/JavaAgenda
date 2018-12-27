@@ -11,9 +11,11 @@ public class Window extends JFrame{
 
 
     String str;
+	Date day;
 
-    public Window(String name, Record rec){
+    public Window(String name, Date day, Record rec){
       super(name);
+	this.day = day;
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       setLocation(300,100);
       setSize(1200,800);
@@ -23,13 +25,13 @@ public class Window extends JFrame{
       Container contentPane = getContentPane();
 
       JPanel pan = new JPanel();
-      PagePanel left = new PagePanel(rec);
+      PagePanel left = new PagePanel(day, rec);
 
       Calendar cal = Calendar.getInstance();
-      cal.setTime(rec.day);
+      cal.setTime(day);
       cal.add(Calendar.DAY_OF_MONTH, 1);
-      rec.day = cal.getTime();
-      PagePanel right = new PagePanel(rec);
+      day = cal.getTime();
+      PagePanel right = new PagePanel(day, rec);
 
       Color colo = new Color(255, 230, 179);
 	left.setBackground(colo);

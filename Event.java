@@ -47,7 +47,7 @@ public class Event extends Note{
     int i = 0;
     while (i < this.str.size())
     {
-      ret += this.getString(i) + this.newline;
+      ret += "[" + this.getTypeString(i) + "] " + this.getString(i) + this.newline;
       i++;
     }
     return ret;

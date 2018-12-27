@@ -15,12 +15,11 @@ public class PagePanel extends JPanel implements ActionListener{
       Record rec;
       Date day;
 
-      public PagePanel(Record rec)
+      public PagePanel(Date day, Record rec)
       {
         this.setLayout(new GridBagLayout());
         this.setBackground(new Color(255, 230, 179));
-	System.out.println(rec.day);
-        this.day = rec.day;
+        this.day = day;
         // this.notes = notes;
         // this.events = events;
         this.rec = rec;

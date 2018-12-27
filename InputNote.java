@@ -8,68 +8,76 @@ import java.lang.*;
 
 public class InputNote extends JFrame implements ActionListener{
 
-  JButton cancel, validate;
-  Record rec;
-  Date day;
-  JTextField input;
-  Integer flag = 0;
+	JButton cancel, validate;
+	Record rec;
+	Date day;
+	JTextField input;
+	Integer flag = 0;
 
-  public InputNote (String name, Date day, Record rec)
-  {
-    super(name);
-    this.day = day;
-    // this.notes = notes;
-    // this.events = events;
-    this.rec = rec;
-    setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    setLocation(500,300);
-    setSize(500, 400);
+	public InputNote (String name, Date day, Record rec)
+	{
+		super(name);
+		this.day = day;
+		// this.notes = notes;
+		// this.events = events;
+		this.rec = rec;
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setLocation(500,300);
+		setSize(500, 400);
 
-    Container contentPane = getContentPane();
+		Container contentPane = getContentPane();
 
-    JPanel pan = new JPanel();
-    JLabel text = new JLabel("Nouvelle note :");
-    input = new JTextField();
-    JPanel panButtons = new JPanel();
-    validate = new JButton("Enregistrer");
-    cancel = new JButton("Annuler");
+		JPanel pan = new JPanel();
+		JLabel text = new JLabel("Nouvelle note :");
+		input = new JTextField();
+		JPanel panButtons = new JPanel();
+		validate = new JButton("Enregistrer");
+		cancel = new JButton("Annuler");
 
-    panButtons.setLayout(new GridLayout(0,2));
-    pan.setLayout(new GridLayout(3,0));
+		panButtons.setLayout(new GridLayout(0,2));
+		pan.setLayout(new GridLayout(3,0));
 
-    pan.add(text);
-    pan.add(input);
-    panButtons.add(cancel);
-    panButtons.add(validate);
-    pan.add(panButtons);
+		pan.add(text);
+		pan.add(input);
+		panButtons.add(cancel);
+		panButtons.add(validate);
+		pan.add(panButtons);
 
-    contentPane.add(pan);
-    setVisible(true);
-    validate.addActionListener(this);
-    cancel.addActionListener(this);
+		contentPane.add(pan);
+		int i;
+		if ((i = ListUtil.getIndexNotes(day, rec.notes)) != -1)
+		{
+			input.setText(rec.notes.get(i).getText());
+		}
+		setVisible(true);
+		validate.addActionListener(this);
+		cancel.addActionListener(this);
+		this.getRootPane().setDefaultButton(validate);
+	}
 
-  }
+	public void actionPerformed(ActionEvent e){
+		Object ev=e.getSource();
+		if (ev == cancel)
+		{
+			this.flag = -1;
+			this.dispose();
+		}else if (ev == validate)
+		{
+			this.flag = 1;
+			Integer i;
+			Note note = new Note(this.day, this.input.getText());
+			if ((i = ListUtil.getIndexNotes(this.day, this.rec.notes)) != -1)
+			{
+				this.rec.notes.get(i).setText(note.getText());
+			}
+			else
+			{
+				this.rec.notes.add(note);
+			}
+			//si il existe une note dans la liste corespondant au meme jour, la remplacer.
+			//System.out.println("Adding new note : "+ this.input.getText());
+			this.dispose();
+		}
 
-  public void actionPerformed(ActionEvent e){
-    Object ev=e.getSource();
-    if (ev == cancel)
-    {
-      this.flag = -1;
-      this.dispose();
-    }else if (ev == validate)
-    {
-      this.flag = 1;
-      Integer i;
-      Note note = new Note(this.day, this.input.getText());
-      if ((i = ListUtil.getIndexNotes(this.day, this.rec.notes)) != -1)
-      {
-	this.rec.notes.remove(i);
-      }
-      //si il existe une note dans la liste corespondant au meme jour, la remplacer.
-      //System.out.println("Adding new note : "+ this.input.getText());
-      this.rec.notes.add(note);
-      this.dispose();
-    }
-
-  }
+	}
 }

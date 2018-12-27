@@ -1,4 +1,7 @@
-Gere les prbm d affichage de events, tester celle sur les notes
-Enlever le champ day de la classe Record, faire les modifications qui en decoulent
-PUSH
+Decider de la maniere de proceder afin de tourner les pages de l'agenda
+faire un petit bouton ou un petit menu permettant de se deplacer directment a une date; Faire un test avec un petit bouton d'exemple, voir si on peut bien se deplacer et aller enregistrer qqch;
+Faire en sorte que pour chaque entre d'anniversaire, il soit enregistrer au meme jour que chaque annee, un event avec ce meme texte;
+Trouver d'autres axes de travail;
+Passer une petite aprem a essayer de nettoyer le code la
 
+PUSH

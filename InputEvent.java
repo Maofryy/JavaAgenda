@@ -57,7 +57,7 @@ public class InputEvent extends JFrame implements ActionListener{
     setVisible(true);
     validate.addActionListener(this);
     cancel.addActionListener(this);
-
+    this.getRootPane().setDefaultButton(validate);
   }
 
   public void actionPerformed(ActionEvent e){

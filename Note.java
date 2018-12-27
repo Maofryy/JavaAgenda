@@ -34,4 +34,8 @@ public class Note implements Serializable{
       return (day + " : " +text);
   }
 
+	public void setText(String str)
+	{
+		this.text = str;
+	}
 }
